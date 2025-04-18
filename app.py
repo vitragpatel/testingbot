@@ -93,6 +93,7 @@ def build_prompt(user_id, user_data, hotel_matches):
     age = user_data.get("age", "N/A")
     gender = user_data.get("gender", "N/A")
     history = user_data.get("purchase_history", [])
+    
 
     past_items = ", ".join([f'{h["item"]} ({h["catagory"]})' for h in history])
     hotel_lines = "\n".join(
