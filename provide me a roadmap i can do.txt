@@ -1,0 +1,627 @@
+provide me a roadmap i can do 
+this is a resturant and all other category data  like this in my firebase datbase 
+[
+  {
+    "name": "Transport Place 1",
+    "types": [
+      "transport"
+    ],
+    "contactNo": "+91-9150929773",
+    "emergencyNo": "+91-108710115",
+    "category": "transport",
+    "location": "Location 1, Surat",
+    "latitude": 21.175987,
+    "longitude": 72.816258
+  },
+  {
+    "name": "Transport Place 2",
+    "types": [
+      "transport"
+    ],
+    "contactNo": "+91-9160869122",
+    "emergencyNo": "+91-108751364",
+    "category": "transport",
+    "location": "Location 2, Surat",
+    "latitude": 21.205481,
+    "longitude": 72.847895
+  },
+  {
+    "name": "Transport Place 3",
+    "types": [
+      "transport"
+    ],
+    "contactNo": "+91-9195842288",
+    "emergencyNo": "+91-102833766",
+    "category": "transport",
+    "location": "Location 3, Surat",
+    "latitude": 21.21772,
+    "longitude": 72.850381
+  },
+  {
+    "name": "Transport Place 4",
+    "types": [
+      "transport"
+    ],
+    "contactNo": "+91-9154776924",
+    "emergencyNo": "+91-103551425",
+    "category": "transport",
+    "location": "Location 4, Surat",
+    "latitude": 21.12771,
+    "longitude": 72.872898
+  },
+  {
+    "name": "Emergency Place 1",
+    "types": [
+      "emergency"
+    ],
+    "contactNo": "+91-9131932745",
+    "emergencyNo": "+91-107368589",
+    "category": "emergency",
+    "location": "Location 5, Surat",
+    "latitude": 21.211764,
+    "longitude": 72.845251
+  },
+  {
+    "name": "Emergency Place 2",
+    "types": [
+      "emergency"
+    ],
+    "contactNo": "+91-9195943491",
+    "emergencyNo": "+91-107394490",
+    "category": "emergency",
+    "location": "Location 6, Surat",
+    "latitude": 21.151817,
+    "longitude": 72.876916
+  },
+  {
+    "name": "Emergency Place 3",
+    "types": [
+      "emergency"
+    ],
+    "contactNo": "+91-9192029332",
+    "emergencyNo": "+91-104714085",
+    "category": "emergency",
+    "location": "Location 7, Surat",
+    "latitude": 21.147762,
+    "longitude": 72.801218
+  },
+  {
+    "name": "Emergency Place 4",
+    "types": [
+      "emergency"
+    ],
+    "contactNo": "+91-9125565357",
+    "emergencyNo": "+91-106450310",
+    "category": "emergency",
+    "location": "Location 8, Surat",
+    "latitude": 21.197728,
+    "longitude": 72.826277
+  },
+  {
+    "name": "Food Delivery Place 1",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9185339391",
+    "emergencyNo": "+91-105776114",
+    "category": "food:delivery",
+    "location": "Location 9, Surat",
+    "latitude": 21.137783,
+    "longitude": 72.792588
+  },
+  {
+    "name": "Food Delivery Place 2",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9148378264",
+    "emergencyNo": "+91-106924783",
+    "category": "food:delivery",
+    "location": "Location 10, Surat",
+    "latitude": 21.158671,
+    "longitude": 72.859667
+  },
+  {
+    "name": "Food Delivery Place 3",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9171140620",
+    "emergencyNo": "+91-109492344",
+    "category": "food:delivery",
+    "location": "Location 11, Surat",
+    "latitude": 21.161191,
+    "longitude": 72.783876
+  },
+  {
+    "name": "Food Delivery Place 4",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9177000079",
+    "emergencyNo": "+91-102216368",
+    "category": "food:delivery",
+    "location": "Location 12, Surat",
+    "latitude": 21.141482,
+    "longitude": 72.802243
+  },
+  {
+    "name": "Food Delivery Place 5",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9158086814",
+    "emergencyNo": "+91-107327730",
+    "category": "food:delivery",
+    "location": "Location 13, Surat",
+    "latitude": 21.194901,
+    "longitude": 72.823309
+  },
+  {
+    "name": "Food Dinein Place 1",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9197709031",
+    "emergencyNo": "+91-105884408",
+    "category": "food:dinein",
+    "location": "Location 14, Surat",
+    "latitude": 21.145456,
+    "longitude": 72.880049
+  },
+  {
+    "name": "Food Dinein Place 2",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9155900240",
+    "emergencyNo": "+91-105464029",
+    "category": "food:dinein",
+    "location": "Location 15, Surat",
+    "latitude": 21.1281,
+    "longitude": 72.854806
+  },
+  {
+    "name": "Food Dinein Place 3",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9196525919",
+    "emergencyNo": "+91-109111088",
+    "category": "food:dinein",
+    "location": "Location 16, Surat",
+    "latitude": 21.149033,
+    "longitude": 72.805593
+  },
+  {
+    "name": "Food Dinein Place 4",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9133358933",
+    "emergencyNo": "+91-106610503",
+    "category": "food:dinein",
+    "location": "Location 17, Surat",
+    "latitude": 21.196332,
+    "longitude": 72.869195
+  },
+  {
+    "name": "Food Dinein Place 5",
+    "types": [
+      "food"
+    ],
+    "contactNo": "+91-9156148592",
+    "emergencyNo": "+91-104809111",
+    "category": "food:dinein",
+    "location": "Location 18, Surat",
+    "latitude": 21.205411,
+    "longitude": 72.868294
+  },
+  {
+    "name": "Casino Place 1",
+    "types": [
+      "casino"
+    ],
+    "contactNo": "+91-9196783060",
+    "emergencyNo": "+91-109604588",
+    "category": "casino",
+    "location": "Location 19, Surat",
+    "latitude": 21.205696,
+    "longitude": 72.862658
+  },
+  {
+    "name": "Casino Place 2",
+    "types": [
+      "casino"
+    ],
+    "contactNo": "+91-9187232432",
+    "emergencyNo": "+91-107364786",
+    "category": "casino",
+    "location": "Location 20, Surat",
+    "latitude": 21.140803,
+    "longitude": 72.831651
+  },
+  {
+    "name": "Casino Place 3",
+    "types": [
+      "casino"
+    ],
+    "contactNo": "+91-9119563361",
+    "emergencyNo": "+91-109689438",
+    "category": "casino",
+    "location": "Location 21, Surat",
+    "latitude": 21.133792,
+    "longitude": 72.825294
+  },
+  {
+    "name": "Club Place 1",
+    "types": [
+      "club"
+    ],
+    "contactNo": "+91-9175076155",
+    "emergencyNo": "+91-107410552",
+    "category": "club",
+    "location": "Location 22, Surat",
+    "latitude": 21.200577,
+    "longitude": 72.851863
+  },
+  {
+    "name": "Club Place 2",
+    "types": [
+      "club"
+    ],
+    "contactNo": "+91-9139997520",
+    "emergencyNo": "+91-104761061",
+    "category": "club",
+    "location": "Location 23, Surat",
+    "latitude": 21.20198,
+    "longitude": 72.829606
+  },
+  {
+    "name": "Club Place 3",
+    "types": [
+      "club"
+    ],
+    "contactNo": "+91-9141778557",
+    "emergencyNo": "+91-107741950",
+    "category": "club",
+    "location": "Location 24, Surat",
+    "latitude": 21.125454,
+    "longitude": 72.786876
+  },
+  {
+    "name": "Govt Place 1",
+    "types": [
+      "govt"
+    ],
+    "contactNo": "+91-9165622084",
+    "emergencyNo": "+91-108016870",
+    "category": "govt",
+    "location": "Location 25, Surat",
+    "latitude": 21.198831,
+    "longitude": 72.873339
+  },
+  {
+    "name": "Govt Place 2",
+    "types": [
+      "govt"
+    ],
+    "contactNo": "+91-9110026210",
+    "emergencyNo": "+91-108781802",
+    "category": "govt",
+    "location": "Location 26, Surat",
+    "latitude": 21.204212,
+    "longitude": 72.799122
+  },
+  {
+    "name": "Govt Place 3",
+    "types": [
+      "govt"
+    ],
+    "contactNo": "+91-9151100550",
+    "emergencyNo": "+91-108519753",
+    "category": "govt",
+    "location": "Location 27, Surat",
+    "latitude": 21.150825,
+    "longitude": 72.858981
+  },
+  {
+    "name": "Govt Place 4",
+    "types": [
+      "govt"
+    ],
+    "contactNo": "+91-9113841254",
+    "emergencyNo": "+91-104258622",
+    "category": "govt",
+    "location": "Location 28, Surat",
+    "latitude": 21.132124,
+    "longitude": 72.820255
+  },
+  {
+    "name": "Handiman Carpenter Place 1",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9151748767",
+    "emergencyNo": "+91-109173719",
+    "category": "handiman:carpenter",
+    "location": "Location 29, Surat",
+    "latitude": 21.174591,
+    "longitude": 72.843259
+  },
+  {
+    "name": "Handiman Carpenter Place 2",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9115669892",
+    "emergencyNo": "+91-103750684",
+    "category": "handiman:carpenter",
+    "location": "Location 30, Surat",
+    "latitude": 21.154364,
+    "longitude": 72.862102
+  },
+  {
+    "name": "Handiman Carpenter Place 3",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9132488269",
+    "emergencyNo": "+91-103725197",
+    "category": "handiman:carpenter",
+    "location": "Location 31, Surat",
+    "latitude": 21.142892,
+    "longitude": 72.874749
+  },
+  {
+    "name": "Handiman Ac Services Place 1",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9164389553",
+    "emergencyNo": "+91-103730331",
+    "category": "handiman:ac services",
+    "location": "Location 32, Surat",
+    "latitude": 21.144704,
+    "longitude": 72.82911
+  },
+  {
+    "name": "Handiman Ac Services Place 2",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9176385788",
+    "emergencyNo": "+91-101152762",
+    "category": "handiman:ac services",
+    "location": "Location 33, Surat",
+    "latitude": 21.181727,
+    "longitude": 72.874352
+  },
+  {
+    "name": "Handiman Ac Services Place 3",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9178333679",
+    "emergencyNo": "+91-103964887",
+    "category": "handiman:ac services",
+    "location": "Location 34, Surat",
+    "latitude": 21.160777,
+    "longitude": 72.802446
+  },
+  {
+    "name": "Handiman Refrigerator Services Place 1",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9153480503",
+    "emergencyNo": "+91-107850795",
+    "category": "handiman:refrigerator services",
+    "location": "Location 35, Surat",
+    "latitude": 21.13452,
+    "longitude": 72.825119
+  },
+  {
+    "name": "Handiman Refrigerator Services Place 2",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9199863209",
+    "emergencyNo": "+91-101411881",
+    "category": "handiman:refrigerator services",
+    "location": "Location 36, Surat",
+    "latitude": 21.137996,
+    "longitude": 72.850999
+  },
+  {
+    "name": "Handiman Refrigerator Services Place 3",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9138743027",
+    "emergencyNo": "+91-105233021",
+    "category": "handiman:refrigerator services",
+    "location": "Location 37, Surat",
+    "latitude": 21.129101,
+    "longitude": 72.873764
+  },
+  {
+    "name": "Handiman Plumber Place 1",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9157160045",
+    "emergencyNo": "+91-106078504",
+    "category": "handiman:plumber",
+    "location": "Location 38, Surat",
+    "latitude": 21.194154,
+    "longitude": 72.781593
+  },
+  {
+    "name": "Handiman Plumber Place 2",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9110008133",
+    "emergencyNo": "+91-109482662",
+    "category": "handiman:plumber",
+    "location": "Location 39, Surat",
+    "latitude": 21.194131,
+    "longitude": 72.820282
+  },
+  {
+    "name": "Handiman Plumber Place 3",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9171676019",
+    "emergencyNo": "+91-108514638",
+    "category": "handiman:plumber",
+    "location": "Location 40, Surat",
+    "latitude": 21.18941,
+    "longitude": 72.819715
+  },
+  {
+    "name": "Handiman Electrician Place 1",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9187549940",
+    "emergencyNo": "+91-107425814",
+    "category": "handiman:electrician",
+    "location": "Location 41, Surat",
+    "latitude": 21.154134,
+    "longitude": 72.871652
+  },
+  {
+    "name": "Handiman Electrician Place 2",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9114901715",
+    "emergencyNo": "+91-101246199",
+    "category": "handiman:electrician",
+    "location": "Location 42, Surat",
+    "latitude": 21.129033,
+    "longitude": 72.804562
+  },
+  {
+    "name": "Handiman Electrician Place 3",
+    "types": [
+      "handiman"
+    ],
+    "contactNo": "+91-9147045560",
+    "emergencyNo": "+91-108705003",
+    "category": "handiman:electrician",
+    "location": "Location 43, Surat",
+    "latitude": 21.134813,
+    "longitude": 72.841177
+  },
+  {
+    "name": "Hotel Place 1",
+    "types": [
+      "hotel"
+    ],
+    "contactNo": "+91-9146297017",
+    "emergencyNo": "+91-105925380",
+    "category": "hotel",
+    "location": "Location 44, Surat",
+    "latitude": 21.150316,
+    "longitude": 72.868946
+  },
+  {
+    "name": "Hotel Place 2",
+    "types": [
+      "hotel"
+    ],
+    "contactNo": "+91-9176805411",
+    "emergencyNo": "+91-103269811",
+    "category": "hotel",
+    "location": "Location 45, Surat",
+    "latitude": 21.14397,
+    "longitude": 72.824128
+  },
+  {
+    "name": "Hotel Place 3",
+    "types": [
+      "hotel"
+    ],
+    "contactNo": "+91-9134644319",
+    "emergencyNo": "+91-105095909",
+    "category": "hotel",
+    "location": "Location 46, Surat",
+    "latitude": 21.18854,
+    "longitude": 72.828943
+  },
+  {
+    "name": "Hotel Place 4",
+    "types": [
+      "hotel"
+    ],
+    "contactNo": "+91-9111290889",
+    "emergencyNo": "+91-106640706",
+    "category": "hotel",
+    "location": "Location 47, Surat",
+    "latitude": 21.218589,
+    "longitude": 72.870223
+  },
+  {
+    "name": "Hotel Place 5",
+    "types": [
+      "hotel"
+    ],
+    "contactNo": "+91-9110606624",
+    "emergencyNo": "+91-106501338",
+    "category": "hotel",
+    "location": "Location 48, Surat",
+    "latitude": 21.181779,
+    "longitude": 72.817153
+  }
+]
+
+inside this this is my user data 
+
+{
+    "users": [
+        {
+            "id": "8zggxz5AET0OADQm7Bll",
+            "name": "Ronak Padaliya",
+            "email": "ronakpadaliya@yopmail.com",
+            "phone": "8347764835",
+            "gender": "male",
+            "password": "$2b$10$kc7r6LlgJ75a5ewYHidfTuRbHf1qWrGmaOGErc5fVVwJkhNGRZhZK",
+            "createdAt": {
+                "_seconds": 1744613904,
+                "_nanoseconds": 822000000
+            },
+            "coordinates": {
+                "_latitude": 21.1702,
+                "_longitude": 72.8311
+            }
+        }
+    ]
+}
+
+i want to build a ai model for notification purpose track a user activity and after that send a notification basend on this 
+- transport
+- emergency
+- food: delivery / dinein
+- casino
+- club
+- govt
+- handiman: carpenter / ac services / refrigerator services / plumber / electrician
+- hotel
+
+Only return one valid category (like "food:dinein" or "handiman:ac services").
+
+if the user used services of handiman and after that user dont user the 
+  food: delivery / dinein
+- casino
+- club
+- govt
+- hotel etc 
+so user can also notify with dont use servies or category 
+i want to create a ai model 
+so provide me a backend in phython and database firebase store 
+and also provide me a folder strucutre and database strcutre 
+technoloy i want to use is fixed python flask or firebase db 
