@@ -22,18 +22,18 @@ def ask_question():
         return jsonify({"error": "Question is required"}), 400
 
     try:
-        print("Processing question:", question)
+        # print("Processing question:", question)
 
         # Format prompt (add system prompt or wrap if needed)
         # prompt = f"[INST] {question} [/INST]"
         # prompt = f"Answer the following question clearly:\n\nQ: {question}\nA:"
         prompt = f"Answer the following question clearly:\n\nQ: {question}\nA:"
 
-        print("Prompt========:", prompt)
+        # print("Prompt========:", prompt)
 
         response = llm(prompt, max_tokens=150, stop=["</s>"])
         
-        print("Response========:", response)
+        # print("Response========:", response)
 
         # Extract response text
         answer = response["choices"][0]["text"].strip()
