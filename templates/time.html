@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch with Input Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 60px;
+    }
+    #stopwatch {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    button, input {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px 5px;
+    }
+    .inputs {
+      margin-top: 30px;
+    }
+    .inputs input {
+      width: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="stopwatch">00:00:00.000</div>
+  <button type="button" onclick="startStopwatch()">Start</button>
+  <button type="button" onclick="stopStopwatch()">Stop</button>
+  <button onclick="stopStopwatch()">Stop</button>
+
+  <div class="inputs">
+    <input type="number" placeholder="Value 1">
+    <input type="number" placeholder="Value 2">
+    <input type="number" placeholder="Value 3">
+    <input type="number" placeholder="Value 4">
+    <input type="number" placeholder="Value 5">
+    <input type="number" placeholder="Value 6">
+  </div>
+
+  <script>
+    let startTime;
+    let interval;
+    let elapsedBefore = 0;
+
+    function startStopwatch() {
+      startTime = Date.now() - elapsedBefore;
+      clearInterval(interval);
+      interval = setInterval(updateTime, 10);
+    }
+
+    function stopStopwatch() {
+      clearInterval(interval);
+      elapsedBefore = Date.now() - startTime;
+    }
+
+    function updateTime() {
+      const elapsed = Date.now() - startTime;
+
+      const hours = Math.floor(elapsed / 3600000);
+      const minutes = Math.floor((elapsed % 3600000) / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
+      const milliseconds = elapsed % 1000;
+
+      document.getElementById('stopwatch').textContent =
+        `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${padMs(milliseconds)}`;
+    }
+
+    function pad(number) {
+      return number < 10 ? '0' + number : number;
+    }
+
+    function padMs(number) {
+      return number.toString().padStart(3, '0');
+    }
+  </script>
+
+</body>
+</html>

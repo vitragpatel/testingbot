@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask a Question</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    select, input[type="text"], button {
+      font-size: 16px;
+      padding: 8px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ask the AI</h1>
+
+  <form id="askForm">
+    <label for="question">Question:</label><br>
+    <input type="text" id="question" name="question" required><br><br>
+
+    <label for="length">Answer Length:</label><br>
+    <select id="length" name="length">
+      <option value="short">Short</option>
+      <option value="medium" selected>Medium</option>
+      <option value="long">Long</option>
+    </select><br><br>
+
+    <button type="submit">Ask</button>
+  </form>
+
+  <h2>Answer:</h2>
+  <textarea id="response" readonly placeholder="AI response will appear here..."></textarea>
+
+  <script>
+    const form = document.getElementById("askForm");
+    const responseBox = document.getElementById("response");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      responseBox.value = "";
+
+      const question = document.getElementById("question").value;
+      const length = document.getElementById("length").value;
+
+      const res = await fetch("/ask-question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, length }),
+      });
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        responseBox.value += decoder.decode(value);
+      }
+    });
+  </script>
+</body>
+</html>
