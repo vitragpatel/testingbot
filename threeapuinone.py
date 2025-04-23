@@ -95,33 +95,36 @@ def find_similar_food_users(target_user, n=3):
 
 # first api to get current_favorites
 def predict_favorite_food(username):
-    try:
-        # Fast exit if user not found
-        user_foods = food_counts.get(username)
-        if user_foods is None:
-            return jsonify({"error": "User not found"}), 404
-
-        # Calculate weighted scores (frequency + recency)
-        scores = []
-        current_time = datetime.now()
-
-        for dish in food_counts[username]:
-            frequency = food_counts[username][dish]
-            last_order_age = (current_time - food_recency[username][dish]).days
-            recency_weight = max(0, 30 - last_order_age) / 30  # 0-1 scale (30-day window)
-
-            # Combined score (70% frequency, 30% recency)
-            score = 0.7 * frequency + 0.3 * recency_weight * 10
-            scores.append((dish, score))
-
-        # Sort by score
-        scores.sort(key=lambda x: x[1], reverse=True)
-
-        return jsonify({
-            "top_prediction": scores[0][0] if scores else None
-        })
-    except Exception as e:
-        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+    
+    # Fast exit if user not found
+    user_foods = food_counts.get(username)
+    if user_foods is None:
+        return jsonify({"error": "User not found"}), 404
+    
+    # if username not in food_counts:
+    #     return jsonify({"error": "User not found"}), 404
+    
+    # Calculate weighted scores (frequency + recency)
+    scores = []
+    current_time = datetime.now()
+    
+    for dish in food_counts[username]:
+        frequency = food_counts[username][dish]
+        last_order_age = (current_time - food_recency[username][dish]).days
+        recency_weight = max(0, 30 - last_order_age) / 30  # 0-1 scale (30-day window)
+        
+        # Combined score (70% frequency, 30% recency)
+        score = 0.7 * frequency + 0.3 * recency_weight * 10
+        scores.append((dish, score))
+    
+    # Sort by score
+    scores.sort(key=lambda x: x[1], reverse=True)
+    
+    return jsonify({
+        # "user": username,
+        # "favorite_foods": [{"dish": dish, "score": round(score, 2)} for dish, score in scores[:5]],
+        "top_prediction": scores[0][0] if scores else None
+    })
 
 from collections import Counter
 #second api to get best time to order food
@@ -195,11 +198,7 @@ def all_recommendations(username):
 def for_all_users():
     all_recommendations_list = []
     
-    num = 0
     for username in data.keys():
-        if num > 100:
-            break
-        num += 1
         print(f"Processing recommendations for {username}...")
         recommendations = all_recommendations(username).get_json()
         all_recommendations_list.append(recommendations)
@@ -208,3 +207,35 @@ def for_all_users():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+
+# @app.route("/recommendations/<username>")
+# def get_recommendations(username):
+#     if username not in data:
+#         return jsonify({"error": "User not found"}), 404
+    
+#     # Step 1: Get unused services
+#     unused = [
+#         service for service, count in data[username]["category_usage"].items() 
+#         if count == 0
+#     ]
+    
+#     # Step 2: Predict engagement for unused services
+#     recommendations = []
+#     for service in unused:
+#         predicted_usage = model_svd.predict(username, service).est
+#         if service == "emergency":
+#             predicted_usage *= 1.2
+#         recommendations.append({
+#             "service": service,
+#             "predicted_usage": predicted_usage
+#         })
+    
+#     # Step 3: Sort by highest predicted usage
+#     recommendations.sort(key=lambda x: x["predicted_usage"], reverse=True)
+    
+#     return jsonify({
+#         # "user": username,
+#         "unused_services": unused,
+#         "recommendations": recommendations
+#     })
