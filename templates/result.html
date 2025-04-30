@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+<head><title>Result</title></head>
+<body>
+  <h2>Prediction: {{ label }} ({{ confidence }})</h2>
+  <img src="{{ url_for('uploaded_file', fname=filename) }}" width="300">
+  <br><a href="/">Try another</a>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload & Crop Image</title>
+
+    <!-- Cropper.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" rel="stylesheet">
+
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 900px; margin: auto; }
+        .container { display: flex; flex-wrap: wrap; gap: 30px; }
+        .column { flex: 1; min-width: 350px; }
+        .flash-messages { list-style: none; padding: 0; margin: 10px 0; }
+        .flash-messages li { padding: 10px; margin-bottom: 5px; border-radius: 4px; border: 1px solid transparent; }
+        .flash-messages .success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .flash-messages .error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        label { display: block; margin-bottom: 5px; font-weight: bold;}
+        input[type="file"] { margin-bottom: 15px; }
+        input[type="submit"], button { padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        input[type="submit"]:hover, button:hover { background-color: #0056b3; }
+        hr { margin: 30px 0; }
+
+        /* Cropper styles */
+        #image-to-crop-container {
+            margin-top: 20px;
+            max-width: 100%; /* Adjust as needed */
+            height: auto; /* Adjust as needed */
+            border: 1px solid #ccc;
+            overflow: hidden; /* Important for cropper */
+        }
+         #image-to-crop-container img {
+             /* Cropper.js needs the image to be block */
+             display: block;
+             /* Ensure the image fills the container */
+             max-width: 100%;
+        }
+
+        .image-display { margin-top: 20px; border: 1px solid #eee; padding: 10px; text-align: center; }
+        .image-display img { max-width: 100%; height: auto; display: block; margin: 10px auto;}
+        .image-display h3 { margin-top: 0; color: #555;}
+
+        #crop-form { margin-top: 15px; } /* Add some space for the crop form */
+
+    </style>
+</head>
+<body>
+    <h1>Upload & Crop Image</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flash-messages>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li> {# Use category directly #}
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Upload Form -->
+    <form method="post" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+        <label for="file">1. Choose image to upload (png, jpg, gif):</label>
+        <input type="file" id="file" name="file" accept="image/png, image/jpeg, image/gif" required>
+        <br>
+        <input type="submit" value="Upload Image">
+    </form>
+
+    <hr>
+
+    <div class="container">
+
+        <!-- Column for Cropping -->
+        <div class="column">
+            {% if original_filename %}
+            <h2>2. Crop Original Image</h2>
+            <p>Select the area you want to keep.</p>
+            <div id="image-to-crop-container">
+                {# Image that Cropper.js will attach to #}
+                <img id="image-to-crop" src="{{ url_for('serve_uploaded_file', filename=original_filename) }}" alt="Original Image to Crop">
+            </div>
+
+            {# Form to submit crop coordinates #}
+            <form id="crop-form" method="post" action="{{ url_for('crop_image') }}">
+                {# Hidden fields to store coordinates and filename #}
+                <input type="hidden" name="filename" value="{{ original_filename }}">
+                <input type="hidden" id="cropX" name="cropX">
+                <input type="hidden" id="cropY" name="cropY">
+                <input type="hidden" id="cropWidth" name="cropWidth">
+                <input type="hidden" id="cropHeight" name="cropHeight">
+                {# Add Rotation, Scale etc. if needed from cropper data #}
+                {# <input type="hidden" id="cropRotate" name="cropRotate"> #}
+                {# <input type="hidden" id="cropScaleX" name="cropScaleX"> #}
+                {# <input type="hidden" id="cropScaleY" name="cropScaleY"> #}
+
+                <button type="submit">Crop Selected Area</button>
+            </form>
+            {% else %}
+            <p>Upload an image first to enable cropping.</p>
+            {% endif %}
+        </div>
+
+        <!-- Column for Displaying Cropped Image -->
+        <div class="column">
+            {% if cropped_filename %}
+            <div class="image-display">
+                <h3>3. Cropped Result</h3>
+                <p>{{ cropped_filename }}</p>
+                <img src="{{ url_for('serve_uploaded_file', filename=cropped_filename) }}" alt="Cropped Image">
+            </div>
+            {% elif original_filename %}
+             <div class="image-display">
+                <h3>3. Cropped Result</h3>
+                <p>No image cropped yet.</p>
+             </div>
+            {% endif %}
+
+            {# Optionally, display the original again for comparison #}
+            {# {% if original_filename %}
+            <div class="image-display" style="margin-top: 20px; opacity: 0.7;">
+                <h3>Original</h3>
+                <img src="{{ url_for('serve_uploaded_file', filename=original_filename) }}" alt="Original Image">
+            </div>
+            {% endif %} #}
+        </div>
+
+    </div><!-- /container -->
+
+
+    <!-- Cropper.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <script>
+        const image = document.getElementById('image-to-crop');
+        const cropXInput = document.getElementById('cropX');
+        const cropYInput = document.getElementById('cropY');
+        const cropWidthInput = document.getElementById('cropWidth');
+        const cropHeightInput = document.getElementById('cropHeight');
+        let cropper; // Declare cropper variable in a wider scope
+
+        // Only initialize cropper if the image element exists
+        if (image) {
+            cropper = new Cropper(image, {
+                aspectRatio: NaN, // Free aspect ratio. Set to 1 for square, 16/9 etc.
+                viewMode: 1, // Restrict crop box to canvas
+                // autoCropArea: 0.8, // Initial size of crop box (0 to 1)
+                // responsive: true, // Handled by CSS mostly
+                // checkOrientation: false, // Might be needed for mobile uploads
+
+                // Event listener for when cropping changes
+                crop(event) {
+                    // console.log(event.detail.x);
+                    // console.log(event.detail.y);
+                    // console.log(event.detail.width);
+                    // console.log(event.detail.height);
+                    // console.log(event.detail.rotate);
+                    // console.log(event.detail.scaleX);
+                    // console.log(event.detail.scaleY);
+
+                    // Update hidden form fields with the current crop data
+                    // Use Math.round() to avoid potential floating point issues if backend expects int
+                    cropXInput.value = Math.round(event.detail.x);
+                    cropYInput.value = Math.round(event.detail.y);
+                    cropWidthInput.value = Math.round(event.detail.width);
+                    cropHeightInput.value = Math.round(event.detail.height);
+                },
+                // Optional: Initialize hidden fields when cropper is ready
+                // ready() {
+                //    const initialData = cropper.getData();
+                //    cropXInput.value = Math.round(initialData.x);
+                //    cropYInput.value = Math.round(initialData.y);
+                //    cropWidthInput.value = Math.round(initialData.width);
+                //    cropHeightInput.value = Math.round(initialData.height);
+                // }
+            });
+
+            // Optional: Handle form submission to ensure coordinates are set
+            // (usually the 'crop' event covers this, but as a fallback)
+            // const cropForm = document.getElementById('crop-form');
+            // cropForm.addEventListener('submit', function (event) {
+            //     const currentData = cropper.getData(true); // Get rounded data
+            //     cropXInput.value = currentData.x;
+            //     cropYInput.value = currentData.y;
+            //     cropWidthInput.value = currentData.width;
+            //     cropHeightInput.value = currentData.height;
+            //     // Make sure fields are not empty if user clicks immediately
+            //     if (!cropWidthInput.value || !cropHeightInput.value) {
+            //        console.error("Crop dimensions are zero.");
+            //        // Optionally prevent submission or alert user
+            //        // event.preventDefault();
+            //        // alert("Please select a crop area.");
+            //     }
+            // });
+
+        } else {
+            console.log("Image element for cropping not found.");
+        }
+
+    </script>
+
+</body>
+</html>
