@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import os
+import csv
 from predict import predict
 from werkzeug.utils import secure_filename
 
@@ -21,9 +22,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     return jsonify({"message": "Image classification API is up and running!"})
 
-
-import csv
-import os
 
 def save_predictions_to_csv(predictions, csv_path):
     # If file doesn't exist, write headers
